@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QHBoxLayout, QVBoxLayout, QLineEdit, QPushButton
 from DataMode import DataMode
 import os
+import platform
 
 class PathLine(QHBoxLayout):
     def __init__(self, dataMode: DataMode, index: int, path: str = '', note: str = ''):
@@ -30,8 +31,10 @@ class PathLine(QHBoxLayout):
         self.dataMode.updateData()
     
     def start(self) -> int:
+        path = self.pathEdit.test()
         try:
-            exit_code = os.system(self.pathEdit.text())
+            if platform.system() == 'Windows': path = f'"{path}"'
+            exit_code = os.system(path)
             if exit_code == 0:
                 self.pathEdit.setStyleSheet('background-color: #77E4C8')
             else:

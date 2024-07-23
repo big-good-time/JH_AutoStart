@@ -26,21 +26,28 @@ class PathLine(QHBoxLayout):
         self.addWidget(self.startButton)
     
     def textChange(self):
+        print(self.index)
         self.dataMode.data['pathList'][self.index][0] = self.pathEdit.text()
         self.dataMode.data['pathList'][self.index][1] = self.noteEdit.text()
+        
         self.dataMode.updateData()
     
     def start(self) -> int:
         path = self.pathEdit.text()
+        exit_code = 0
+
         try:
-            if platform.system() == 'Windows': path = f'"{path}"'
+            if platform.system() == 'Windows': path =f'"{path}"'
+            
             exit_code = os.system(path)
-            if exit_code == 0:
+            if exit_code < 0:
                 self.pathEdit.setStyleSheet('background-color: #77E4C8')
             else:
                 self.pathEdit.setStyleSheet('background-color: #FFAAAA')
-        except:
+        except Exception as e:
             self.pathEdit.setStyleSheet('background-color: #FFAAAA')
+
+        print(exit_code)
         
         return exit_code
         

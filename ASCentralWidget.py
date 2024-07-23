@@ -13,6 +13,8 @@ class ASCentralWidget(QWidget):
 
     def __init__(self, dataMode: DataMode):
         super().__init__()
+
+        self.index = 0
         self.dataMode = dataMode
 
         self.pathLineList = []
@@ -82,40 +84,42 @@ class ASCentralWidget(QWidget):
         self.contentLayout = QVBoxLayout()
         self.contentLayout.addLayout(noteLayout)
 
-        self.pathList = self.dataMode.data['pathList']
+        for i in range(len(self.dataMode.data['pathList'])):
+            path = self.dataMode.data['pathList'][i][0]
+            note = self.dataMode.data['pathList'][i][1]
+            self.addPath2List(False, path, note)
 
-        for i in range(len(self.pathList)):
-            path = self.pathList[i][0]
-            note = self.pathList[i][1]
-            self.addPath2List(i, False, path, note)
 
         self.mainLayout.addLayout(self.contentLayout)
 
         self.ADLayout = QHBoxLayout()
         self.addButton = QPushButton('+')
-        self.addButton.clicked.connect(partial(self.addPath2List, len(self.pathList), True))
+        self.addButton.clicked.connect(partial(self.addPath2List, isNew=True))
         self.delButton = QPushButton('-')
         self.delButton.clicked.connect(self.delPath2List)
         self.ADLayout.addWidget(self.addButton)
         self.ADLayout.addWidget(self.delButton)
         self.mainLayout.addLayout(self.ADLayout)
     
-    def addPath2List(self, index: int, isNew: bool = False, path: str = '', note: str = ''):
+    def addPath2List(self, isNew: bool = False, path: str = '', note: str = ''):
         """添加"""
+        print(f'new: {self.index}')
         if isNew:
             self.dataMode.data['pathList'].append([path, note])
             self.dataMode.updateData()
         else:
             self.sig_pathEdit.emit()
-        layout = PathLine(self.dataMode, index - 1, path, note)
+        layout = PathLine(self.dataMode, self.index, path, note)
         self.contentLayout.addLayout(layout)
         self.pathLineList.append(layout)
-        self.pathList = self.dataMode.data['pathList']
+        self.dataMode.updateData()
+        self.index += 1
 
     
     def delPath2List(self):
         """删除"""
-        if len(self.dataMode.data['pathList']) == 0: return
+        if self.index == 0: return
+
         del self.dataMode.data['pathList'][-1]
         del self.pathLineList[-1]
         self.dataMode.updateData()
@@ -127,6 +131,8 @@ class ASCentralWidget(QWidget):
         self.contentLayout.removeItem(layout)
 
         self.sig_pathEdit.emit()
+
+        self.index -= 1
     
     def timeEdit(self):
         """等待时间编辑"""

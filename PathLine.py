@@ -31,7 +31,7 @@ class PathLine(QHBoxLayout):
         self.dataMode.updateData()
     
     def start(self) -> int:
-        path = self.pathEdit.test()
+        path = self.pathEdit.text()
         try:
             if platform.system() == 'Windows': path = f'"{path}"'
             exit_code = os.system(path)

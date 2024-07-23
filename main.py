@@ -1,7 +1,7 @@
 from MainWindow import MainWindow
 from PySide6.QtWidgets import QApplication
 from DataMode import DataMode
-import sys, ctypes, platform
+import sys, ctypes
 
 def run_as_admin():
     try:

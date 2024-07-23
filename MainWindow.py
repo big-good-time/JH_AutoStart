@@ -1,8 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QStatusBar, QLabel, QScrollArea
 from PySide6.QtCore import QTimer
-from functools import partial
 from collections import deque
-from PathLine import PathLine
 from ASCentralWidget import ASCentralWidget
 from DataMode import DataMode
 

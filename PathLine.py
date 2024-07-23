@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QHBoxLayout, QVBoxLayout, QLineEdit, QPushButton
+from PySide6.QtWidgets import QHBoxLayout, QLineEdit, QPushButton
 from DataMode import DataMode
 import os
 import platform

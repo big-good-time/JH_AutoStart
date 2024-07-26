@@ -5,9 +5,10 @@ from ASCentralWidget import ASCentralWidget
 from DataMode import DataMode
 
 class MainWindow(QMainWindow):
-    def __init__(self, dataMode: DataMode):
+    def __init__(self, dataMode: DataMode, version: str):
         super().__init__()
 
+        self.version = version
         self.dataMode = dataMode
         self.resize(self.dataMode.data['windowWidth'], self.dataMode.data['windowHeight'])
         self.setupUi()
@@ -26,7 +27,7 @@ class MainWindow(QMainWindow):
         self.status_bar = QStatusBar() # 状态栏
         self.setStatusBar(self.status_bar)
 
-        self.parmanent_label = QLabel('Ready')
+        self.parmanent_label = QLabel(self.version)
         self.status_bar.addPermanentWidget(self.parmanent_label)
 
     

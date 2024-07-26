@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QStatusBar, QLabel, QScrollArea
+from PySide6.QtWidgets import QMainWindow, QStatusBar, QLabel, QScrollArea, QMessageBox
 from PySide6.QtCore import QTimer
 from collections import deque
 from ASCentralWidget import ASCentralWidget
@@ -105,11 +105,4 @@ class MainWindow(QMainWindow):
                 self.pathLineQueue.popleft().start()
                 self.spaceIndex = 0
         else:
-            self.spaceIndex += 1
-
-
-
-        
-
-
-        
+            self.spaceIndex += 1        

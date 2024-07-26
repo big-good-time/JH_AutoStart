@@ -8,7 +8,7 @@ class ErrorWidget(QWidget):
         super().__init__()
 
         with open('log.txt', 'a') as f:
-            f.write(msg)
+            f.write(f'main: {msg} /n')
 
         self.msg = msg
         

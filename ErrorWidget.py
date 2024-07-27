@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton
 from PySide6.QtCore import Signal
+import WriteLog
 
 class ErrorWidget(QWidget):
     close_Signal = Signal()
@@ -7,8 +8,7 @@ class ErrorWidget(QWidget):
     def __init__(self, msg: str):
         super().__init__()
 
-        with open('log.txt', 'a') as f:
-            f.write(f'main: {msg} \n')
+        WriteLog.write_log(msg)
 
         self.msg = msg
         

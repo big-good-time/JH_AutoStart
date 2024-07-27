@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QHBoxLayout, QLineEdit, QPushButton
 from DataMode import DataMode
 import os
 import platform
+import openExe
 
 class PathLine(QHBoxLayout):
     def __init__(self, dataMode: DataMode, index: int, path: str = '', note: str = ''):
@@ -37,17 +38,14 @@ class PathLine(QHBoxLayout):
         exit_code = 0
 
         try:
-            if platform.system() == 'Windows': path =f'"{path}"'
-            
-            exit_code = os.system(path)
-            if exit_code < 0:
+            # if platform.system() == 'Windows': path =f'"{path}"'
+            exit_code = openExe.run(path)
+            if exit_code:
                 self.pathEdit.setStyleSheet('background-color: #77E4C8')
             else:
                 self.pathEdit.setStyleSheet('background-color: #FFAAAA')
         except Exception as e:
             self.pathEdit.setStyleSheet('background-color: #FFAAAA')
-
-        print(exit_code)
         
         return exit_code
         

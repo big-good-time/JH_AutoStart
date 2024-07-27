@@ -16,18 +16,23 @@ UPDATE_FILE_URL = f'http://127.0.0.1:8000/update/{UPDATE_FILE_NAME}'
 
 if __name__ == '__main__':
 
+    argv = sys.argv[1:]
+
     dataMode = DataMode()
     app = QApplication(sys.argv)
 
     try:
-        is_new_version = CheckUpdate(app,
-                                     OBJECT_NAME=OBJECT_NAME,
-                                     APP_NAME=APP_NAME,
-                                     VERSION_URL=VERSION_URL,
-                                     VERSION=VERSION,
-                                     REQUEST_USER_AGENT=REQUEST_USER_AGENT,
-                                     UPDATE_FILE_NAME=UPDATE_FILE_NAME,
-                                     UPDATE_FILE_URL=UPDATE_FILE_URL).check()
+        if argv[0] == 'test':
+            is_new_version = True
+        else:
+            is_new_version = CheckUpdate(app,
+                                        OBJECT_NAME=OBJECT_NAME,
+                                        APP_NAME=APP_NAME,
+                                        VERSION_URL=VERSION_URL,
+                                        VERSION=VERSION,
+                                        REQUEST_USER_AGENT=REQUEST_USER_AGENT,
+                                        UPDATE_FILE_NAME=UPDATE_FILE_NAME,
+                                        UPDATE_FILE_URL=UPDATE_FILE_URL).check()
         if is_new_version:
             window = MainWindow(dataMode, VERSION)
             window.show()

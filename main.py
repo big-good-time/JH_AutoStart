@@ -22,7 +22,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     try:
-        if argv[0] == 'test':
+        if argv and argv[0] == 'test':
             is_new_version = True
         else:
             is_new_version = CheckUpdate(app,

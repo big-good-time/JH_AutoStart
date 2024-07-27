@@ -8,7 +8,7 @@ from ErrorWidget import ErrorWidget
 OBJECT_NAME = 'JH_AutoStart' # 项目名称
 APP_NAME = 'AutoStart' # 软件名称
 VERSION_URL = f'http://127.0.0.1:8000/versions/{OBJECT_NAME}/' # 版本列表
-VERSION = '1.0.4' # 当前版本
+VERSION = '1.0.5' # 当前版本
 REQUEST_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
 UPDATE_FILE_NAME = 'update.exe'
 UPDATE_FILE_URL = f'http://127.0.0.1:8000/update/{UPDATE_FILE_NAME}'

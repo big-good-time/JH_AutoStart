@@ -5,3 +5,4 @@ AutoStart.spec
 update.exe
 main.spec
 log.txt
+*.spec

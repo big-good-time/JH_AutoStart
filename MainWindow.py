@@ -74,7 +74,7 @@ class MainWindow(QMainWindow):
         self.autoTimer.start(1100)
     
     def waitMessage(self):
-        self.status_bar.showMessage(f'{self.index} / {self.dataMode.data['waitTime']} 秒后启动')
+        self.status_bar.showMessage(f"{self.index} / {self.dataMode.data['waitTime']} 秒后启动")
         
         if self.index >= self.dataMode.data['waitTime']:
             self.autoTimer.stop()
@@ -101,7 +101,7 @@ class MainWindow(QMainWindow):
                 self.quitAuto()
                 return
 
-        self.status_bar.showMessage(f'{self.spaceIndex} / {self.dataMode.data['spaceTime']} 秒后启动下一个')
+        self.status_bar.showMessage(f"{self.spaceIndex} / {self.dataMode.data['spaceTime']} 秒后启动下一个")
         if self.spaceIndex >= self.dataMode.data['spaceTime']:
                 self.pathLineQueue.popleft().start()
                 self.spaceIndex = 0
